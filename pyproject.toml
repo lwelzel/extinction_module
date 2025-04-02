@@ -1,0 +1,69 @@
+[build-system]
+requires = [
+    "setuptools",
+    "setuptools_scm",
+    "wheel",
+]
+build-backend = "setuptools.build_meta"
+
+
+[project]
+name = "extinction_module"
+version = "0.0.1"
+description = "Differentiable extinction module."
+readme = "README.md"
+requires-python = ">=3.12"
+license = { file = "LICENSE.txt" }
+keywords = ["dust"]
+
+authors = [
+    { name = "L. Welzel", email = "welzel@strw.leidenuniv.nl" }
+]
+maintainers = [
+    { name = "L. Welzel", email = "welzel@strw.leidenuniv.nl" }
+]
+
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Programming Language :: Python :: 3",
+  "Operating System :: OS Independent",
+  "Intended Audience :: Science/Research",
+]
+
+dependencies = [
+    # Core dependencies (PyPI installable)
+    "numpy",
+    "scipy",
+    "matplotlib",
+]
+
+[project.optional-dependencies]
+cuda = [
+    # Note: These require special installation
+                        # conda create -n extinction_module python=3.12
+                        # conda activate extinction_module
+    # "cuda",           # conda install cuda -c nvidia/label/cuda-12.6.3
+    # "torch",          # pip3 install torch torchvision --index-url https://download.pytorch.org/whl/cu126
+    # "torchvision",    # 
+]
+
+dev = [
+    "pytest",
+    "pytest-cov",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/lwelzel/extinction_module"
+
+[tool.setuptools]
+package-data = {}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools_scm]
+write_to = "src/extinction_module/__version__.py"
+
+[tool.pytest]
+testpaths = ["tests"]
+python_files = "test_*.py"
